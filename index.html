@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            /* Light gray background */
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            /* White container background */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow effect */
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            /* Dark header color */
+        }
+
+        .converter {
+            margin-bottom: 20px;
+        }
+
+        .converter label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            /* Medium dark text color */
+        }
+
+        .converter select,
+        .converter input[type="number"],
+        .converter button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            /* Light border color */
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .converter button {
+            cursor: pointer;
+            background-color: #6c757d;
+            /* Gray button color */
+            color: #fff;
+            /* White text color */
+            border: none;
+            transition: background-color 0.3s;
+        }
+
+        .converter button:hover {
+            background-color: #5a6268;
+            /* Darker gray on hover */
+        }
+
+        .converter button.reset {
+            background-color: #dc3545;
+            /* Red button color */
+        }
+
+        .converter button.reset:hover {
+            background-color: #c82333;
+            /* Darker red on hover */
+        }
+
+        #result {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            background: linear-gradient(45deg, #00bcd4, #ff4081);
+            /* Gradient background */
+            color: #fff;
+            /* White text color */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Currency Converter</h1>
+        <div class="converter">
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" placeholder="Enter amount">
+
+            <label for="from">From:</label>
+            <select id="from">
+                <option value="usd">USD - United States Dollar</option>
+            </select>
+
+            <label for="to">To:</label>
+            <select id="to">
+                <option value="eur">EUR - Euro</option>
+                <option value="gbp">GBP - Pound Sterling</option>
+                <option value="aud">AUD - Australian Dollar</option>
+                <option value="cad">CAD - Canadian Dollar</option>
+                <option value="chf">CHF - Swiss Franc</option>
+                <option value="inr">INR - Indian Rupee</option>
+            </select>
+
+            <button onclick="convert()">Convert</button>
+            <button onclick="resetForm()">Reset</button>
+        </div>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function convert() {
+            var amount = document.getElementById("amount").value;
+            var from = "usd";
+            var to = document.getElementById("to").value;
+            var result = 0;
+
+            // Replace this with actual conversion rates or API call
+            if (to === "eur") {
+                result = amount * 0.82;
+            } else if (to === "gbp") {
+                result = amount * 0.72;
+            } else if (to === "aud") {
+                result = amount * 1.28;
+            } else if (to === "cad") {
+                result = amount * 1.26;
+            } else if (to === "chf") {
+                result = amount * 0.90;
+            } else if (to === "inr") {
+                result = amount * 75.64;
+            } else {
+                result = amount;
+            }
+
+            document.getElementById("result").innerHTML = `${amount} USD = ${result.toFixed(2)} ${to.toUpperCase()}`;
+        }
+
+        function resetForm() {
+            document.getElementById("amount").value = "";
+            document.getElementById("to").selectedIndex = 0;
+            document.getElementById("result").innerHTML = "";
+        }
+
+
+    </script>
+</body>
+
+</html>
